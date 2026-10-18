@@ -1,55 +1,38 @@
 import React from 'react';
 import './Education.css';
-import { GraduationCap } from 'lucide-react';
-import { motion } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
+import SectionHeading from './SectionHeading';
 
-const Education: React.FC = () => {
-  return (
-    <section id="education" className="section">
-      <div className="container">
-        <h2 className="heading text-gradient">Education</h2>
-        
-        <div className="education-grid">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-          >
-            <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000} className="education-card glass-card">
-              <div className="education-icon">
-              <GraduationCap size={28} />
-            </div>
-            <div className="education-content">
-              <h3 className="education-degree">Bachelor of Engineering - BE, Information Technology</h3>
-              <h4 className="education-school">Shah & Anchor Kutchi Engineering College</h4>
-              <p className="education-year">2019 - 2023</p>
-            </div>
-            </Tilt>
-          </motion.div>
+const entries = [
+  {
+    years: '2019 — 2023',
+    degree: 'Bachelor of Engineering (B.E.), Information Technology',
+    school: 'Shah & Anchor Kutchhi Engineering College, University of Mumbai',
+  },
+  {
+    years: '2017 — 2019',
+    degree: 'HSC, Science',
+    school: 'SIES College',
+  },
+];
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000} className="education-card glass-card">
-              <div className="education-icon">
-              <GraduationCap size={28} />
+const Education: React.FC = () => (
+  <section id="education" className="section">
+    <div className="container">
+      <SectionHeading index="05" title="Education" />
+
+      <ul className="edu-list">
+        {entries.map((entry) => (
+          <li className="edu-item" key={entry.degree}>
+            <span className="edu-years mono-label">{entry.years}</span>
+            <div>
+              <h3 className="edu-degree">{entry.degree}</h3>
+              <p className="edu-school">{entry.school}</p>
             </div>
-            <div className="education-content">
-              <h3 className="education-degree">HSC - Science</h3>
-              <h4 className="education-school">SIES College</h4>
-              <p className="education-year">2017 - 2019</p>
-            </div>
-            </Tilt>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
 export default Education;

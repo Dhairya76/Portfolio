@@ -1,316 +1,283 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+/* Fonts are loaded via <link> in index.html, not @import. An @import here is
+   only discovered after this stylesheet downloads and parses, which chains the
+   requests and blocks first paint by roughly a second. */
 
-:root, [data-theme="cyberpunk"] {
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --bg-primary: #0B1120;
-  --bg-secondary: #0f172a;
-  --bg-surface: rgba(30, 41, 59, 0.6);
-  --accent: #00f0ff;
-  --accent-glow: rgba(0, 240, 255, 0.4);
-  --accent-gradient: linear-gradient(135deg, #00f0ff, #0055ff);
-  
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-radius-sm: 0.5rem;
-  --border-radius-md: 1rem;
-  --border-radius-lg: 1.5rem;
+/* ---------------------------------------------------------------------------
+   Tokens.
 
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
+   Two themes, one identity: `dark` (default) and `light`. Both are warm
+   neutrals rather than the usual blue-black, with a single amber accent that
+   is spent sparingly — links, the primary action, and numbers that matter.
+   Components read these tokens and never hardcode a colour.
+--------------------------------------------------------------------------- */
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0a0a0b;
+  --bg-raised: #121214;
+  --bg-sunken: #060607;
+
+  --text: #ededef;
+  --text-2: #a3a3ab;
+  /* 4.92:1 on --bg. Carries mono labels, nav links and status text, all of
+     which are small, so it has to clear 4.5:1 rather than the 3:1 for large. */
+  --text-3: #7e7e87;
+
+  --rule: #232327;
+  --rule-strong: #35353b;
+
+  --accent: #ff9142;
+  --accent-quiet: rgba(255, 145, 66, 0.12);
+  --accent-text: #0a0a0b;
 }
 
-[data-theme="minimalist"] {
-  --font-main: 'Inter', sans-serif;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-surface: rgba(255, 255, 255, 1);
-  --accent: #000000;
-  --accent-glow: rgba(0, 0, 0, 0.1);
-  --accent-gradient: #000000;
-  
-  --text-primary: #000000;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  
-  --border-color: #000000;
-  --border-radius-sm: 0px;
-  --border-radius-md: 0px;
-  --border-radius-lg: 0px;
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #faf9f7;
+  --bg-raised: #ffffff;
+  --bg-sunken: #f1efea;
+
+  --text: #17171a;
+  --text-2: #55555e;
+  --text-3: #6e6e78; /* 4.79:1 on --bg */
+
+  --rule: #e4e1db;
+  --rule-strong: #cfcbc2;
+
+  --accent: #b8561a;
+  --accent-quiet: rgba(184, 86, 26, 0.09);
+  --accent-text: #ffffff;
 }
 
-[data-theme="terminal"] {
-  --font-main: 'Fira Code', monospace;
-  --bg-primary: #050505;
-  --bg-secondary: #000000;
-  --bg-surface: rgba(0, 20, 0, 0.8);
-  --accent: #00ff00;
-  --accent-glow: rgba(0, 255, 0, 0.2);
-  --accent-gradient: #00ff00;
-  
-  --text-primary: #00ff00;
-  --text-secondary: #00cc00;
-  --text-muted: #006600;
-  
-  --border-color: #00ff00;
-  --border-radius-sm: 0px;
-  --border-radius-md: 0px;
-  --border-radius-lg: 0px;
+:root {
+  --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* Type scale — 1.25 ratio, clamped so it holds together on a phone. */
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: clamp(1.1rem, 0.4vw + 1rem, 1.25rem);
+  --step-2: clamp(1.35rem, 0.9vw + 1.1rem, 1.6rem);
+  --step-3: clamp(1.7rem, 1.6vw + 1.2rem, 2.25rem);
+  --step-4: clamp(2.4rem, 5vw + 1rem, 4.5rem);
+
+  --measure: 68ch;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-gap: clamp(4.5rem, 10vw, 8rem);
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --fast: 140ms var(--ease);
+  --normal: 240ms var(--ease);
 }
 
-[data-theme="aesthetic"] {
-  --font-main: 'Playfair Display', serif;
-  --bg-primary: #fdfbf7;
-  --bg-secondary: #f4efe6;
-  --bg-surface: rgba(255, 255, 255, 0.6);
-  --accent: #849b87;
-  --accent-glow: rgba(132, 155, 135, 0.2);
-  --accent-gradient: linear-gradient(135deg, #849b87, #b2c5b4);
-  
-  --text-primary: #2d362e;
-  --text-secondary: #5a665b;
-  --text-muted: #8b998d;
-  
-  --border-color: #e6e0d8;
-  --border-radius-sm: 0.75rem;
-  --border-radius-md: 1.5rem;
-  --border-radius-lg: 2rem;
-}
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
 
-[data-theme="bento"] {
-  --font-main: 'Inter', sans-serif;
-  --bg-primary: #f3f4f6;
-  --bg-secondary: #e5e7eb;
-  --bg-surface: #ffffff;
-  --accent: #4f46e5;
-  --accent-glow: rgba(79, 70, 229, 0.2);
-  --accent-gradient: #4f46e5;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --border-color: #e5e7eb;
-  --border-radius-sm: 1rem;
-  --border-radius-md: 1.5rem;
-  --border-radius-lg: 2rem;
-}
-
-[data-theme="neumorphism"] {
-  --font-main: 'Inter', sans-serif;
-  --bg-primary: #e0e5ec;
-  --bg-secondary: #d1d9e6;
-  --bg-surface: #e0e5ec;
-  --accent: #4776e6;
-  --accent-glow: rgba(71, 118, 230, 0.2);
-  --accent-gradient: #4776e6;
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-muted: #999999;
-  --border-color: transparent;
-  --border-radius-sm: 0.5rem;
-  --border-radius-md: 1.5rem;
-  --border-radius-lg: 2rem;
-}
-
-[data-theme="popart"] {
-  --font-main: 'Inter', sans-serif;
-  --bg-primary: #ffe600;
-  --bg-secondary: #ff00ff;
-  --bg-surface: #ffffff;
-  --accent: #ff00ff;
-  --accent-glow: transparent;
-  --accent-gradient: #ff00ff;
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #333333;
-  --border-color: #000000;
-  --border-radius-sm: 0;
-  --border-radius-md: 0;
-  --border-radius-lg: 0;
-}
-
-[data-theme="brutalism"] {
-  --font-main: 'Fira Code', monospace;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f0f0f0;
-  --bg-surface: #ffffff;
-  --accent: #0000ff;
-  --accent-glow: transparent;
-  --accent-gradient: #0000ff;
-  --text-primary: #000000;
-  --text-secondary: #333333;
-  --text-muted: #666666;
-  --border-color: #000000;
-  --border-radius-sm: 0;
-  --border-radius-md: 0;
-  --border-radius-lg: 0;
-}
-
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: var(--step-0);
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern', 'liga';
+  transition: background-color var(--normal), color var(--normal);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--accent);
 }
 
 button {
-  font-family: var(--font-main);
+  font: inherit;
   border: none;
   background: none;
   cursor: pointer;
+  color: inherit;
 }
 
-/* Typography utilities */
-.text-gradient {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+ul,
+ol {
+  list-style: none;
 }
 
-.heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-text);
 }
 
-/* Glassmorphism utilities */
-.glass-card {
-  background: var(--bg-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  padding: 2rem;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-.glass-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-glow);
-  box-shadow: 0 10px 30px -10px var(--accent-glow);
-}
+/* ---------------------------------------------------------------------------
+   Layout
+--------------------------------------------------------------------------- */
 
-/* Layout utilities */
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
 .section {
-  padding: 5rem 0;
+  padding-block: var(--section-gap);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Anchor jumps otherwise land with the heading tucked under the fixed navbar. */
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+html {
+  scroll-behavior: smooth;
 }
 
-.animate-delay-1 { animation-delay: 0.2s; }
-.animate-delay-2 { animation-delay: 0.4s; }
-.animate-delay-3 { animation-delay: 0.6s; }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+.measure {
+  max-width: var(--measure);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+/* ---------------------------------------------------------------------------
+   Mono utilities — labels, metadata, anything machine-ish.
+--------------------------------------------------------------------------- */
+
+/* Visible to screen readers only — for giving a stable text alternative to
+   something animated or decorative. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(30, 41, 59, 1);
-  border-radius: 10px;
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
 }
 
-/* Custom Selection */
-::selection {
-  background-color: var(--accent);
-  color: var(--bg-primary);
+/* A number or value worth noticing — "22 GB → 15 GB", "~32%". */
+.metric {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 0.95em;
+  white-space: nowrap;
 }
 
-/* THEME SPECIFIC OVERRIDES */
-[data-theme="neumorphism"] .glass-card {
-  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5);
-  border: none;
-  backdrop-filter: none;
-}
+/* ---------------------------------------------------------------------------
+   Buttons
+--------------------------------------------------------------------------- */
 
-[data-theme="neumorphism"] .glass-card:hover {
-  box-shadow: inset 6px 6px 10px 0 rgba(163,177,198,0.7), inset -6px -6px 10px 0 rgba(255,255,255,0.8);
-  transform: none;
-}
-
-[data-theme="popart"] .glass-card {
-  border: 3px solid #000;
-  box-shadow: 8px 8px 0px #000;
-  backdrop-filter: none;
-  border-radius: 0;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-[data-theme="popart"] .glass-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0px #000;
-  border-color: #000;
-}
-
-[data-theme="brutalism"] .glass-card {
-  border: 2px solid #000;
-  box-shadow: none;
-  backdrop-filter: none;
-  border-radius: 0;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  color: var(--text);
   background: transparent;
+  transition: border-color var(--fast), color var(--fast),
+    background-color var(--fast);
 }
 
-[data-theme="brutalism"] .glass-card:hover {
-  background: #000;
-  color: #fff;
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-[data-theme="brutalism"] .glass-card:hover * {
-  color: #fff !important;
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
 }
 
-[data-theme="bento"] .skills-grid, [data-theme="bento"] .education-grid {
-  gap: 1rem;
+.btn-primary:hover {
+  background: var(--accent);
+  color: var(--accent-text);
+  filter: brightness(1.08);
 }
 
-[data-theme="bento"] .glass-card {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  backdrop-filter: none;
-  border: 1px solid var(--border-color);
+/* ---------------------------------------------------------------------------
+   Inline link treatment — underline that thickens, no colour-only signal.
+--------------------------------------------------------------------------- */
+
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-thickness var(--fast);
 }
 
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

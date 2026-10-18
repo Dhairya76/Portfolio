@@ -1,47 +1,33 @@
-.education-grid {
+.edu-list {
+  border-top: 1px solid var(--rule);
+}
+
+.edu-item {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 0 2.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-.education-card {
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  padding: 2rem;
-}
-
-.education-icon {
-  background: rgba(0, 240, 255, 0.1);
+.edu-years {
   color: var(--accent);
-  padding: 1rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-top: 0.15rem;
 }
 
-.education-content {
-  flex: 1;
-}
-
-.education-degree {
-  font-size: 1.15rem;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.education-school {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.education-year {
-  font-size: 0.9rem;
-  color: var(--text-muted);
+.edu-degree {
+  font-size: var(--step-0);
   font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.edu-school {
+  color: var(--text-2);
+}
+
+@media (max-width: 720px) {
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
 }

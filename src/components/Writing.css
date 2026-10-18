@@ -1,0 +1,71 @@
+.writing-list {
+  border-top: 1px solid var(--rule);
+}
+
+.writing-item {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0 2.5rem;
+  padding-block: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+  transition: background-color var(--fast);
+}
+
+.writing-item:hover {
+  background: color-mix(in srgb, var(--text) 2.5%, transparent);
+}
+
+.writing-date {
+  color: var(--accent);
+}
+
+.writing-body {
+  display: block;
+  max-width: var(--measure);
+}
+
+.writing-title {
+  display: block;
+  font-weight: 600;
+  font-size: var(--step-1);
+  line-height: 1.4;
+  margin-bottom: 0.3rem;
+  transition: color var(--fast);
+}
+
+.writing-item:hover .writing-title {
+  color: var(--accent);
+}
+
+.writing-blurb {
+  display: block;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.writing-arrow {
+  color: var(--text-3);
+  transition: transform var(--fast), color var(--fast);
+  align-self: center;
+}
+
+.writing-item:hover .writing-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.writing-all {
+  margin-top: 1.75rem;
+}
+
+@media (max-width: 720px) {
+  .writing-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.35rem 1rem;
+  }
+
+  .writing-date {
+    grid-column: 1 / -1;
+  }
+}

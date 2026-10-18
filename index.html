@@ -2,11 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+
+    <title>Dhairya Thakker — Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer building backend services in Go, Node.js and TypeScript. Projects, work experience and contact details."
+    />
+    <meta name="author" content="Dhairya Thakker" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <link rel="canonical" href="https://REPLACE_WITH_DEPLOYED_URL/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/profile-640.jpeg" />
+    <link rel="preload" as="image" href="/profile-640.jpeg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dhairya Thakker" />
+    <meta property="og:title" content="Dhairya Thakker — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer building backend services in Go, Node.js and TypeScript. Projects, work experience and contact details."
+    />
+    <meta property="og:url" content="https://REPLACE_WITH_DEPLOYED_URL/" />
+    <meta property="og:image" content="https://REPLACE_WITH_DEPLOYED_URL/og-image.png" />
+    <meta property="og:image:alt" content="Dhairya Thakker — Software Engineer" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dhairya Thakker — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Software engineer building backend services in Go, Node.js and TypeScript. Projects, work experience and contact details."
+    />
+    <meta name="twitter:image" content="https://REPLACE_WITH_DEPLOYED_URL/og-image.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+    />
   </head>
   <body>
+    <script>
+      // Set the theme before first paint, otherwise the page flashes dark
+      // before React mounts and corrects it.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme =
+            saved === 'dark' || saved === 'light'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'light') {
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute('content', '#faf9f7');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

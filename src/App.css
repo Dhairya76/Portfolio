@@ -2,46 +2,39 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-x: clip;
+  /* Contain the grain's negative z-index without needing a rule on the
+     siblings — one that outranked `position: fixed` on the navbar and the
+     theme toggle and dropped both back into the flow. `isolation` makes a
+     stacking context but not a containing block, so fixed children still
+     anchor to the viewport. */
+  isolation: isolate;
 }
 
 main {
   flex: 1;
 }
 
-/* Background effects */
-.bg-glow-1, .bg-glow-2 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  z-index: -1;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.bg-glow-1 {
-  top: -10%;
-  left: -10%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(0,240,255,0.15) 0%, rgba(11,17,32,0) 70%);
-}
-
-.bg-glow-2 {
-  bottom: 20%;
-  right: -10%;
-  width: 40vw;
-  height: 40vw;
-  background: radial-gradient(circle, rgba(0,85,255,0.15) 0%, rgba(11,17,32,0) 70%);
-}
-
-.cursor-glow {
+/* A single, very quiet texture over the whole page — the one decorative
+   flourish left. It replaces the blurred colour glows, which cost a lot of
+   paint and made the page look like every other template. */
+.grain {
   position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  z-index: -1;
   pointer-events: none;
-  z-index: 1; /* Below content, above static glows */
-  filter: blur(50px);
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+[data-theme='light'] .grain {
+  opacity: 0.025;
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    display: none;
+  }
 }

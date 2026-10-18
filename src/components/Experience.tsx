@@ -1,65 +1,149 @@
 import React from 'react';
 import './Experience.css';
-import { Briefcase } from 'lucide-react';
-import { motion } from 'framer-motion';
-import Tilt from 'react-parallax-tilt';
+import SectionHeading from './SectionHeading';
 
-const Experience: React.FC = () => {
-  const tasks = [
-    "Developed and maintained scalable backend services using Node.js, JavaScript, and Redis, ensuring high performance and low latency across distributed systems.",
-    "Built reusable and responsive UI components using React.js, JavaScript, HTML, and CSS, improving frontend performance and user experience.",
-    "Optimized complex SQL queries and BigQuery pipelines, enhancing data retrieval efficiency and boosting application stability.",
-    "Addressed critical VAPT issues and improved security compliance through backend hardening and secure code practices.",
-    "Integrated and managed Logstash pipelines with Grafana for real-time monitoring and log aggregation.",
-    "Automated data workflows using Apache Airflow and processed large-scale data using Apache Beam, ensuring reliable and timely data delivery.",
-    "Created dynamic dashboards and reports using Metabase, enabling actionable insights for data-driven decisions.",
-    "Utilized RabbitMQ for asynchronous communication, improving system scalability and decoupling of microservices.",
-    "Collaborated via Git and GitLab, deployed applications on GCP, and containerized services with Kubernetes for efficient CI/CD and cloud scalability."
-  ];
+type Task = { label: string; body: React.ReactNode };
 
-  return (
-    <section id="experience" className="section">
-      <div className="container">
-        <h2 className="heading text-gradient">Work Experience</h2>
-        
-        <div className="experience-timeline">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} scale={1.01} transitionSpeed={2000} className="experience-card glass-card">
-              <div className="experience-header">
-              <div className="experience-title-wrapper">
-                <div className="icon-wrapper">
-                  <Briefcase size={20} className="accent-icon" />
-                </div>
-                <div>
-                  <h3 className="experience-title">Associate Software Engineer</h3>
-                  <h4 className="experience-company">Algorisys Technologies</h4>
-                </div>
-              </div>
-              <div className="experience-meta">
-                <span className="experience-date">09/2023 - Present</span>
-                <span className="experience-location">Mumbai, India</span>
-              </div>
-            </div>
-            
-            <ul className="experience-tasks">
-              {tasks.map((task, index) => (
-                <li key={index} className="task-item">
-                  <span className="task-bullet"></span>
-                  <p>{task}</p>
-                </li>
-              ))}
-              </ul>
-            </Tilt>
-          </motion.div>
+/** Figures worth reading as data get the mono accent treatment. */
+const M: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <span className="metric">{children}</span>
+);
+
+const tasks: Task[] = [
+  {
+    label: 'Distributed backend & async ingestion',
+    body: (
+      <>
+        Architected a dedicated reporting microservice that offloads heavy
+        CSV/Excel processing from the core API, streaming batched exports
+        straight to GCS with configurable column filters and scheduled email
+        dispatch. Built streaming sheet-ingestion APIs handling high-volume UUID
+        records.
+      </>
+    ),
+  },
+  {
+    label: 'Event-driven comms & notifications',
+    body: (
+      <>
+        Engineered an end-to-end event notification engine and reviewer console
+        tray on Google Cloud Pub/Sub, with conditional retrigger mechanisms and
+        stateful alert queues for enterprise verifier workflows.
+      </>
+    ),
+  },
+  {
+    label: 'Production AI & edge vision',
+    body: (
+      <>
+        Integrated client-side RF-DETR object detection via ONNX Runtime Web for
+        real-time ID document and selfie auto-capture, and deployed resilient
+        LLM name-parsing workflows on the OpenAI API with automatic Gemini
+        fallback.
+      </>
+    ),
+  },
+  {
+    label: 'End-to-end cryptography',
+    body: (
+      <>
+        Designed per-session WebSocket payload encryption using <M>A128CBC</M>{' '}
+        with client-level feature-flag toggling and fail-closed guarantees,
+        ensuring in-flight journey records cannot be tampered with.
+      </>
+    ),
+  },
+  {
+    label: 'VAPT hardening & OWASP remediation',
+    body: (
+      <>
+        Remediated critical and high-severity banking vulnerabilities:
+        eliminated null-byte extension bypasses, blocked malicious PDF/CSV
+        injection vectors, resolved SQL injection, and added HMAC-timestamped
+        webhooks, OTP rate limiting and Cloudflare Turnstile CAPTCHA.
+      </>
+    ),
+  },
+  {
+    label: 'Access control & governance',
+    body: (
+      <>
+        Implemented server-side RBAC across decisioning APIs with
+        approval/rejection audit trails and token refresh lifecycles, satisfying
+        strict multi-tenant banking compliance.
+      </>
+    ),
+  },
+  {
+    label: 'Data lifecycle & storage optimization',
+    body: (
+      <>
+        Shipped an OU-scoped purge and archival engine with dynamic TTL
+        retention, eliminated worker OOM crashes through serialized batch
+        processing, and reclaimed <M>~32%</M> of database storage{' '}
+        <M>(22 GB → 15 GB)</M> with scheduled VACUUM FULL / ANALYZE.
+      </>
+    ),
+  },
+  {
+    label: 'Streaming telemetry & analytics',
+    body: (
+      <>
+        Deployed Logstash ingestion parsers feeding ClickHouse and BigQuery
+        schemas with automated partition TTLs, tracking step turnaround times,
+        retry counts and funnel drop-off into real-time Metabase dashboards.
+      </>
+    ),
+  },
+  {
+    label: 'International fintech rollouts',
+    body: (
+      <>
+        Shipped compliant KYC/KYB journeys across <M>4 markets</M> (India,
+        Philippines, UAE, Indonesia), covering <M>17+ document types</M>, MRZ
+        checksum validation, 4K camera capture and National-ID QR parsing with
+        Latin character support.
+      </>
+    ),
+  },
+];
+
+const Experience: React.FC = () => (
+  <section id="experience" className="section">
+    <div className="container">
+      <SectionHeading index="02" title="Experience" meta="sep 2023 — present" />
+
+      <div className="role">
+        <div className="role-head">
+          <div>
+            <h3 className="role-title">Software Engineer</h3>
+            <p className="role-company">
+              Algorisys Technologies
+              <span className="role-client"> · client deputation: IDfy</span>
+            </p>
+          </div>
+          <p className="role-meta mono">
+            Enterprise KYC &amp; Identity Platform
+            <span className="role-loc">Mumbai, India</span>
+          </p>
         </div>
+
+        <ol className="role-tasks">
+          {tasks.map((task, idx) => (
+            <li className="task" key={task.label}>
+              <span className="task-index mono-label" aria-hidden="true">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h4 className="task-label">{task.label}</h4>
+                <p className="task-body">{task.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Experience;

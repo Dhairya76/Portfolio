@@ -20,7 +20,9 @@ const Navbar: React.FC = () => {
         </a>
         <div className="nav-links">
           <a href="#home" className="nav-link">Home</a>
+          <a href="#projects" className="nav-link">Projects</a>
           <a href="#experience" className="nav-link">Experience</a>
+          <a href="#writing" className="nav-link">Writing</a>
           <a href="#skills" className="nav-link">Skills</a>
           <a href="#education" className="nav-link">Education</a>
         </div>
