@@ -2,7 +2,7 @@
 
 Personal portfolio site: projects, work experience, writing, skills and contact details.
 
-**Live:** _not deployed yet — replace this line with the Vercel URL once it is._
+**Live:** https://portfolio-dhairya76.vercel.app
 
 ## Stack
 
@@ -92,19 +92,18 @@ Lighthouse on the production build: **99 / 100 / 100 / 100**
 
 ## Deploying
 
-A static Vite build, so any static host works. For Vercel, import the repository and
-keep the detected defaults (build `npm run build`, output `dist`).
+A static Vite build, so any static host works. It is deployed on Vercel (Hobby),
+imported from GitHub with the detected defaults (build `npm run build`, output
+`dist`), and redeploys on every push to `main`.
 
-Before the first deploy, replace the `REPLACE_WITH_DEPLOYED_URL` placeholders in
-[`index.html`](index.html) with the real origin so the canonical and Open Graph tags
-resolve, and add `public/og-image.png` (1200×630) for link previews.
+The canonical and Open Graph tags in [`index.html`](index.html) hardcode the
+origin, because social scrapers do not resolve relative URLs. If the domain ever
+changes, those four tags have to change with it.
 
 ## Known gaps
 
 - No collapsible mobile menu — the navbar links scroll horizontally instead.
 - The profile image is JPEG, not WebP/AVIF — worth converting when tooling allows.
-- `index.html` carries `REPLACE_WITH_DEPLOYED_URL` placeholders until the first
-  deploy; until they are swapped for the real origin, link previews will not resolve.
 
 The link-preview card at `public/og-image.png` is generated from
 [`tools/og-image.html`](tools/og-image.html) — that file documents the one-line
