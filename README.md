@@ -102,8 +102,13 @@ resolve, and add `public/og-image.png` (1200×630) for link previews.
 ## Known gaps
 
 - No collapsible mobile menu — the navbar links scroll horizontally instead.
-- `public/og-image.png` does not exist yet, so link previews have no image.
 - The profile image is JPEG, not WebP/AVIF — worth converting when tooling allows.
+- `index.html` carries `REPLACE_WITH_DEPLOYED_URL` placeholders until the first
+  deploy; until they are swapped for the real origin, link previews will not resolve.
+
+The link-preview card at `public/og-image.png` is generated from
+[`tools/og-image.html`](tools/og-image.html) — that file documents the one-line
+Chrome command that regenerates it.
 
 ## License
 

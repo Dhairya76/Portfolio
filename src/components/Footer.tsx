@@ -1,6 +1,13 @@
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import { FaMedium } from 'react-icons/fa';
+import { EMAIL, LINKS } from '../siteConfig';
 import './Footer.css';
+
+const elsewhere = [
+  { label: 'GitHub', href: LINKS.github, Icon: FiGithub },
+  { label: 'LinkedIn', href: LINKS.linkedin, Icon: FiLinkedin },
+  { label: 'Medium', href: LINKS.medium, Icon: FaMedium },
+];
 
 const Footer: React.FC = () => (
   <footer className="footer">
@@ -14,41 +21,25 @@ const Footer: React.FC = () => (
         </p>
       </div>
 
+      <div className="footer-col">
+        <p className="mono-label footer-head">Get in touch</p>
+        {/* Spelled out rather than hidden behind the word "Email" — a mailto
+            link is dead on a machine with no mail client. */}
+        <a href={`mailto:${EMAIL}`} className="footer-email">
+          <FiMail size={14} aria-hidden="true" /> {EMAIL}
+        </a>
+      </div>
+
       <nav className="footer-col" aria-label="Elsewhere">
         <p className="mono-label footer-head">Elsewhere</p>
         <ul className="footer-links">
-          <li>
-            <a
-              href="https://github.com/Dhairya76"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FiGithub size={14} aria-hidden="true" /> GitHub
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://linkedin.com/in/thakker-dhairya"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FiLinkedin size={14} aria-hidden="true" /> LinkedIn
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://medium.com/@dhairyathakker76"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaMedium size={14} aria-hidden="true" /> Medium
-            </a>
-          </li>
-          <li>
-            <a href="mailto:dhairyathakker76@gmail.com">
-              <FiMail size={14} aria-hidden="true" /> Email
-            </a>
-          </li>
+          {elsewhere.map(({ label, href, Icon }) => (
+            <li key={label}>
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                <Icon size={14} aria-hidden="true" /> {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

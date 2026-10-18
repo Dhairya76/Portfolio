@@ -96,6 +96,15 @@
   color: var(--text);
 }
 
+/* The address is long; let it drop to its own line before it squeezes
+   the other fields. */
+.hero-fact-mail {
+  flex: 1 1 100%;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;

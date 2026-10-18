@@ -1,0 +1,48 @@
+.copy-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+}
+
+.copy-email-address {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule-strong);
+  transition: color var(--fast), text-decoration-color var(--fast);
+  /* Selectable by hand, which is the whole point of showing it. */
+  user-select: all;
+}
+
+.copy-email-address:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.copy-email-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  color: var(--text-3);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  transition: color var(--fast), border-color var(--fast);
+}
+
+.copy-email-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.copy-email-status {
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  /* Reserve the space so nothing shifts when the word appears. */
+  min-width: 7.5rem;
+}

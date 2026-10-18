@@ -1,0 +1,188 @@
+<!doctype html>
+<!--
+  Source for public/og-image.png (1200×630 link-preview card).
+
+  Regenerate after changing it:
+
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --hide-scrollbars \
+      --window-size=1200,630 \
+      --virtual-time-budget=10000 \
+      --screenshot=public/og-image.png \
+      "file://$PWD/tools/og-image.html"
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #0a0a0b;
+        --text: #ededef;
+        --text-2: #a3a3ab;
+        --text-3: #7e7e87;
+        --rule: #232327;
+        --accent: #ff9142;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'IBM Plex Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 72px 80px;
+        position: relative;
+      }
+
+      /* Same grain as the site. */
+      body::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        opacity: 0.035;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .mono {
+        font-family: 'IBM Plex Mono', monospace;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 17px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-3);
+      }
+
+      .eyebrow::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--rule);
+      }
+
+      h1 {
+        font-size: 82px;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+      }
+
+      .role {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 24px;
+        color: var(--text-2);
+        margin-top: 26px;
+      }
+
+      .role .caret {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .block {
+        display: inline-block;
+        width: 13px;
+        height: 25px;
+        background: var(--accent);
+        transform: translateY(3px);
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-top: 1px solid var(--rule);
+        padding-top: 26px;
+      }
+
+      .fields {
+        display: flex;
+        gap: 56px;
+      }
+
+      .field dt {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        margin-bottom: 6px;
+      }
+
+      .field dd {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 19px;
+        color: var(--text);
+      }
+
+      .url {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 19px;
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <p class="eyebrow">Dhairya Thakker</p>
+
+    <div>
+      <h1>
+        Backend engineer<br />
+        building systems<br />
+        that hold up.
+      </h1>
+      <p class="role">
+        <span class="caret">&gt;</span> go · node.js · typescript
+        <span class="block"></span>
+      </p>
+    </div>
+
+    <footer>
+      <dl class="fields">
+        <div class="field">
+          <dt>Loc</dt>
+          <dd>Panvel, India</dd>
+        </div>
+        <div class="field">
+          <dt>Exp</dt>
+          <dd>3+ years</dd>
+        </div>
+        <div class="field">
+          <dt>Now</dt>
+          <dd>Algorisys → IDfy</dd>
+        </div>
+      </dl>
+      <span class="url">github.com/Dhairya76</span>
+    </footer>
+  </body>
+</html>

@@ -2,6 +2,8 @@ import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowDown } from 'react-ico
 import { FaMedium } from 'react-icons/fa';
 import { TypeAnimation } from 'react-type-animation';
 import { useReducedMotion } from '../hooks/useReducedMotion';
+import CopyEmail from './CopyEmail';
+import { EMAIL, LINKS } from '../siteConfig';
 import './Hero.css';
 
 // Three angles on one story, not three different stories.
@@ -71,6 +73,12 @@ const Hero: React.FC = () => {
                 <dd className="mono">{v}</dd>
               </div>
             ))}
+            <div className="hero-fact hero-fact-mail">
+              <dt className="mono-label">mail</dt>
+              <dd>
+                <CopyEmail />
+              </dd>
+            </div>
           </dl>
 
           <div className="hero-actions">
@@ -80,7 +88,7 @@ const Hero: React.FC = () => {
             <a href="/Dhairya-Thakker-Resume.pdf" download className="btn">
               <FiDownload size={14} aria-hidden="true" /> Résumé
             </a>
-            <a href="mailto:dhairyathakker76@gmail.com" className="btn">
+            <a href={`mailto:${EMAIL}`} className="btn">
               <FiMail size={14} aria-hidden="true" /> Contact
             </a>
           </div>
@@ -88,7 +96,7 @@ const Hero: React.FC = () => {
           <ul className="hero-socials">
             <li>
               <a
-                href="https://github.com/Dhairya76"
+                href={LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -99,7 +107,7 @@ const Hero: React.FC = () => {
             </li>
             <li>
               <a
-                href="https://linkedin.com/in/thakker-dhairya"
+                href={LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
@@ -110,7 +118,7 @@ const Hero: React.FC = () => {
             </li>
             <li>
               <a
-                href="https://medium.com/@dhairyathakker76"
+                href={LINKS.medium}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
